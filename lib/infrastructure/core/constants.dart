@@ -20,6 +20,10 @@ String get baseUrl {
   return dotenv.get(_baseUrlKey);
 }
 
+const _productionKey = 'PRODUCTION';
+bool get isProd => dotenv.get(_productionKey) == 'true';
+bool get isDev => dotenv.get(_productionKey) == 'false';
+
 const _defaultReceiveTimeout = 'DEFAULT_RECEIVE_TIMEOUT';
 
 int get defaultReceiveTimeout {
