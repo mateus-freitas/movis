@@ -1,0 +1,13 @@
+{
+  "home": "Home",
+  "profile": "Profile",
+  "appTitle": "Movis",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+
+  "next": "Next",
+  "skip": "Skip",
+  "finish": "Finish",
+  "restart": "Restart"
+}
