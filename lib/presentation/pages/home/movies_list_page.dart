@@ -47,16 +47,13 @@ class _MainContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (vm.moviesFailure != null) {
-      print(vm.moviesFailure!.message);
-      return Center(
-        child: Column(
-          children: [
-            Text(vm.moviesFailure!.message),
-          ],
-        ),
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(vm.moviesFailure!.message),
+        ],
       );
     }
-    print('poe');
     if (vm.movies == null) {
       return Center(
         child: CircularProgressIndicator.adaptive(),

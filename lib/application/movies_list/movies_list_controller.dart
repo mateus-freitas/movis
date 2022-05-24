@@ -10,7 +10,7 @@ abstract class IMoviesListController {
       IMoviesListViewModel vm);
 }
 
-@Injectable(as: IMoviesListController)
+@Singleton(as: IMoviesListController)
 class MoviesListController implements IMoviesListController {
   final IMoviesListRepository _repository;
 

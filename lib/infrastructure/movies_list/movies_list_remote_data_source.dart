@@ -40,14 +40,11 @@ class MoviesListRemoteDataSourceImpl implements IMoviesListRemoteDataSource {
             statusCode: -1,
             message: 'The response data does not have the expected result');
       }
-      return (results as List<Map<String, dynamic>>).map((e) {
-        final dto = MovieDto.fromJson(e);
-        print(dto.toString());
-        return dto;
-      }).toList();
+      return results.map((e) => MovieDto.fromJson(e)).toList();
     } on TheMovieDBException catch (_) {
       rethrow;
     } catch (e) {
+      print(e);
       throw TheMovieDBException(
           statusCode: -1, message: 'Error during request');
     }

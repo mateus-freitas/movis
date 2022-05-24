@@ -9,10 +9,10 @@ part 'movie_dto.g.dart';
 class MovieDto with _$MovieDto {
   const factory MovieDto(
       {required String title,
-      required String posterPath,
+      @JsonKey(name: 'poster_path') required String posterPath,
       required int id,
-      required String releaseDate,
-      required double voteAverage}) = _MovieDto;
+      @JsonKey(name: 'release_date') required String releaseDate,
+      @JsonKey(name: 'vote_average') required double voteAverage}) = _MovieDto;
 
   factory MovieDto.fromJson(Map<String, dynamic> json) =>
       _$MovieDtoFromJson(json);

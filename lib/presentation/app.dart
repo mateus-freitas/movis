@@ -30,6 +30,7 @@ class MovisApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      themeMode: ThemeMode.dark,
       home: MoviesListPage(
         controller: sl<IMoviesListController>(),
         viewModel: sl<IMoviesListViewModel>(),

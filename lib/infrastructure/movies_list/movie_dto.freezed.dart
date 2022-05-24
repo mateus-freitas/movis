@@ -21,9 +21,12 @@ MovieDto _$MovieDtoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$MovieDto {
   String get title => throw _privateConstructorUsedError;
+  @JsonKey(name: 'poster_path')
   String get posterPath => throw _privateConstructorUsedError;
   int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'release_date')
   String get releaseDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'vote_average')
   double get voteAverage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,10 +41,10 @@ abstract class $MovieDtoCopyWith<$Res> {
       _$MovieDtoCopyWithImpl<$Res>;
   $Res call(
       {String title,
-      String posterPath,
+      @JsonKey(name: 'poster_path') String posterPath,
       int id,
-      String releaseDate,
-      double voteAverage});
+      @JsonKey(name: 'release_date') String releaseDate,
+      @JsonKey(name: 'vote_average') double voteAverage});
 }
 
 /// @nodoc
@@ -93,10 +96,10 @@ abstract class _$$_MovieDtoCopyWith<$Res> implements $MovieDtoCopyWith<$Res> {
   @override
   $Res call(
       {String title,
-      String posterPath,
+      @JsonKey(name: 'poster_path') String posterPath,
       int id,
-      String releaseDate,
-      double voteAverage});
+      @JsonKey(name: 'release_date') String releaseDate,
+      @JsonKey(name: 'vote_average') double voteAverage});
 }
 
 /// @nodoc
@@ -147,10 +150,10 @@ class __$$_MovieDtoCopyWithImpl<$Res> extends _$MovieDtoCopyWithImpl<$Res>
 class _$_MovieDto implements _MovieDto {
   const _$_MovieDto(
       {required this.title,
-      required this.posterPath,
+      @JsonKey(name: 'poster_path') required this.posterPath,
       required this.id,
-      required this.releaseDate,
-      required this.voteAverage});
+      @JsonKey(name: 'release_date') required this.releaseDate,
+      @JsonKey(name: 'vote_average') required this.voteAverage});
 
   factory _$_MovieDto.fromJson(Map<String, dynamic> json) =>
       _$$_MovieDtoFromJson(json);
@@ -158,12 +161,15 @@ class _$_MovieDto implements _MovieDto {
   @override
   final String title;
   @override
+  @JsonKey(name: 'poster_path')
   final String posterPath;
   @override
   final int id;
   @override
+  @JsonKey(name: 'release_date')
   final String releaseDate;
   @override
+  @JsonKey(name: 'vote_average')
   final double voteAverage;
 
   @override
@@ -209,23 +215,27 @@ class _$_MovieDto implements _MovieDto {
 
 abstract class _MovieDto implements MovieDto {
   const factory _MovieDto(
-      {required final String title,
-      required final String posterPath,
-      required final int id,
-      required final String releaseDate,
-      required final double voteAverage}) = _$_MovieDto;
+          {required final String title,
+          @JsonKey(name: 'poster_path') required final String posterPath,
+          required final int id,
+          @JsonKey(name: 'release_date') required final String releaseDate,
+          @JsonKey(name: 'vote_average') required final double voteAverage}) =
+      _$_MovieDto;
 
   factory _MovieDto.fromJson(Map<String, dynamic> json) = _$_MovieDto.fromJson;
 
   @override
   String get title => throw _privateConstructorUsedError;
   @override
+  @JsonKey(name: 'poster_path')
   String get posterPath => throw _privateConstructorUsedError;
   @override
   int get id => throw _privateConstructorUsedError;
   @override
+  @JsonKey(name: 'release_date')
   String get releaseDate => throw _privateConstructorUsedError;
   @override
+  @JsonKey(name: 'vote_average')
   double get voteAverage => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

@@ -18,10 +18,8 @@ class MoviesListRepositoryImpl implements IMoviesListRepository {
     try {
       final moviesDtos = await _remoteDataSource.getPopularMovies();
       final movies = moviesDtos.map((e) => e.toDomain()).toList();
-      movies.forEach(((element) => print(element)));
       return Right(movies);
     } on TheMovieDBException catch (e) {
-      print(e.message);
       return Left(TheMovieDBFailure.generalError(
           statusCode: e.statusCode, message: e.message));
     } catch (e) {

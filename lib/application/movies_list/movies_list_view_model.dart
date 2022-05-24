@@ -11,7 +11,7 @@ abstract class IMoviesListViewModel {
   set isLoading(bool newValue);
 }
 
-@Injectable(as: IMoviesListViewModel)
+@Singleton(as: IMoviesListViewModel)
 class MoviesListViewModel implements IMoviesListViewModel {
   List<Movie>? _movies;
   TheMovieDBFailure? _movieDBFailure;
