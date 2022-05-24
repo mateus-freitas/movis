@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:movis/infrastructure/core/constants.dart';
+import 'package:movis/presentation/core/constants.dart';
 import 'package:movis/presentation/core/theme/app_colors.dart';
 
 PreferredSizeWidget getPlatformAppBar(BuildContext context, Widget title,

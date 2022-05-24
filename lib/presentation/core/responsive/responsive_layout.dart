@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movis/infrastructure/core/constants.dart';
+import 'package:movis/presentation/core/constants.dart';
 
 class ResponsiveLayout extends StatelessWidget {
   final Widget large;

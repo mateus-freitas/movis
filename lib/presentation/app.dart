@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:movis/application/movies_list/movies_list_controller.dart';
-import 'package:movis/application/movies_list/movies_list_view_model.dart';
-import 'package:movis/core/injection.dart';
 import 'package:movis/presentation/core/localization/app_localizations.dart';
+import 'package:movis/presentation/core/router/router.dart';
+import 'package:movis/presentation/core/router/routes.dart';
 import 'package:movis/presentation/core/theme/app_theme.dart';
-import 'package:movis/presentation/pages/home/movies_list_page.dart';
 
 class MovisApp extends StatelessWidget {
   const MovisApp({Key? key}) : super(key: key);
@@ -17,6 +15,8 @@ class MovisApp extends StatelessWidget {
     return MaterialApp(
       restorationScopeId: 'app',
       debugShowCheckedModeBanner: false,
+      onGenerateRoute: generateRoute,
+      initialRoute: AppRoute.home.name,
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -30,10 +30,6 @@ class MovisApp extends StatelessWidget {
       onGenerateTitle: (BuildContext context) => localize(context).appTitle,
       theme: darkTheme,
       themeMode: ThemeMode.dark,
-      home: MoviesListPage(
-        controller: sl<IMoviesListController>(),
-        viewModel: sl<IMoviesListViewModel>(),
-      ),
     );
   }
 }

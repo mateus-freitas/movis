@@ -125,6 +125,7 @@ class _ButtonChild extends StatelessWidget {
         label: localize(context)
             .loadingButtonSemantics
             .replaceFirst('X', semanticsLabel ?? title),
+        button: true,
         child: const SizedBox(
           height: 20,
           child: CircularProgressIndicator.adaptive(

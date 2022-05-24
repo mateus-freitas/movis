@@ -45,18 +45,3 @@ const _defaultConnectTimeout = 'DEFAULT_CONNECT_TIMEOUT';
 int get defaultConnectTimeout {
   return int.parse(dotenv.get(_defaultConnectTimeout));
 }
-
-const double largeScreenSize = 1366;
-const double mediumScreenSize = 668;
-const double smallScreenSize = 360;
-
-bool get isAppleDevice {
-  return defaultTargetPlatform == TargetPlatform.iOS ||
-      defaultTargetPlatform == TargetPlatform.macOS;
-}
-
-bool get isDesktop {
-  return defaultTargetPlatform == TargetPlatform.windows ||
-      defaultTargetPlatform == TargetPlatform.macOS ||
-      defaultTargetPlatform == TargetPlatform.linux;
-}

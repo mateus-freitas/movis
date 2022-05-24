@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:movis/application/movies_list/movies_list_controller.dart';
 import 'package:movis/application/movies_list/movies_list_view_model.dart';
 import 'package:movis/presentation/core/components/buttons/app_button/app_button.dart';
-import 'package:movis/presentation/core/components/platform_app_bar.dart';
+import 'package:movis/presentation/core/components/scaffold/app_scaffold.dart';
+import 'package:movis/presentation/core/components/scaffold/platform_app_bar.dart';
 import 'package:movis/presentation/core/constants.dart';
 import 'package:movis/presentation/core/localization/app_localizations.dart';
 import 'package:movis/presentation/core/responsive/responsive_layout.dart';
+import 'package:movis/presentation/core/router/router.dart';
 import 'package:movis/presentation/pages/home/widgets/movie_poster_view.dart';
+import 'package:movis/presentation/pages/movie_info/movie_info_page.dart';
 
 class MoviesListPage extends StatefulWidget {
   final IMoviesListController controller;
@@ -37,19 +40,15 @@ class _MoviesListPageState extends State<MoviesListPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: getPlatformAppBar(
-          context,
-          Text(
-            localize(context).appTitle.toLowerCase(),
-            style: const TextStyle(
-                color: Colors.white, fontWeight: FontWeight.w900),
-          ),
-          trailing: AppButton(
-            type: ButtonType.text,
-            title: localize(context).favorites,
-            onPressed: () {},
-          )),
+    return AppScaffold(
+      title: localize(context).appTitle.toLowerCase(),
+      titleStyle:
+          const TextStyle(color: Colors.white, fontWeight: FontWeight.w900),
+      trailing: AppButton(
+        type: ButtonType.text,
+        title: localize(context).favorites,
+        onPressed: () {},
+      ),
       body: SafeArea(child: _MainContent(vm: _vm)),
     );
   }
@@ -105,9 +104,14 @@ class _MainContent extends StatelessWidget {
               itemBuilder: (context, index) {
                 final movie = vm.movies![index];
                 return MoviePosterView(
-                    posterImage: movie.poster,
-                    title: movie.title,
-                    movieScore: movie.userScore);
+                  posterImage: movie.poster,
+                  title: movie.title,
+                  movieScore: movie.userScore,
+                  onTap: () {
+                    Navigator.of(context).push(getPlatformPageRoute(
+                        builder: (context) => MovieInfoPage(movie: movie)));
+                  },
+                );
               },
             )
           ],
