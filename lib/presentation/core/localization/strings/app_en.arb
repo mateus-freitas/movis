@@ -13,6 +13,9 @@
   "favorites": "Favorites",
   "favoriteMovies": "Favorite Movies",
 
+  "generalErrorMessage": "There was an error. Please, check your connection and try again.",
+  "tmdbOffline": "Our servers aren't responding. Please, try again later.",
+
   "next": "Next",
   "skip": "Skip",
   "finish": "Finish",

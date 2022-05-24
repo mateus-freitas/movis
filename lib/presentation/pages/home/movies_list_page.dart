@@ -3,7 +3,6 @@ import 'package:movis/application/movies_list/movies_list_controller.dart';
 import 'package:movis/application/movies_list/movies_list_view_model.dart';
 import 'package:movis/presentation/core/components/buttons/app_button/app_button.dart';
 import 'package:movis/presentation/core/components/scaffold/app_scaffold.dart';
-import 'package:movis/presentation/core/components/scaffold/platform_app_bar.dart';
 import 'package:movis/presentation/core/constants.dart';
 import 'package:movis/presentation/core/localization/app_localizations.dart';
 import 'package:movis/presentation/core/responsive/responsive_layout.dart';
@@ -71,7 +70,14 @@ class _MainContent extends StatelessWidget {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(vm.moviesFailure!.message),
+          Text(vm.moviesFailure!.when<String>(
+            generalError: (statusCode, message) =>
+                localize(context).generalErrorMessage,
+            serviceOffline: (statusCode, message) =>
+                localize(context).tmdbOffline,
+            invalidId: (statusCode, message) =>
+                localize(context).generalErrorMessage,
+          )),
         ],
       );
     }
