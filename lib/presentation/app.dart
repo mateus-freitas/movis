@@ -15,6 +15,7 @@ class MovisApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       restorationScopeId: 'app',
+      debugShowCheckedModeBanner: false,
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,

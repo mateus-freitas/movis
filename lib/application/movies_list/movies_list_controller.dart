@@ -20,7 +20,10 @@ class MoviesListController implements IMoviesListController {
   Future<Either<TheMovieDBFailure, List<Movie>>> loadMovies(
       IMoviesListViewModel vm) async {
     final moviesResult = await _repository.getPopularMovies();
-    return moviesResult.fold((l) => moviesResult, (movies) {
+    return moviesResult.fold((failure) {
+      vm.moviesFailure = failure;
+      return moviesResult;
+    }, (movies) {
       vm.movies = movies;
       return moviesResult;
     });

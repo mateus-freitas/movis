@@ -25,11 +25,12 @@ void main() {
 
   final moviesList = [
     Movie(
-        name: 'movie name',
+        id: 23344,
+        title: 'movie name',
         poster: Uri.parse(
             'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/tlZpSxYuBRoVJBOpUrPdQe9FmFq.jpg'),
         releaseDate: DateTime(2022, 2, 17),
-        userScore: 0.72)
+        userScore: 8.3)
   ];
 
   test('should get data from movies list repository', () {});

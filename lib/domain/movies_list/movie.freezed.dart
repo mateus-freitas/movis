@@ -16,7 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Movie {
-  String get name => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
   Uri get poster => throw _privateConstructorUsedError;
   DateTime get releaseDate => throw _privateConstructorUsedError;
   double get userScore => throw _privateConstructorUsedError;
@@ -29,7 +30,12 @@ mixin _$Movie {
 abstract class $MovieCopyWith<$Res> {
   factory $MovieCopyWith(Movie value, $Res Function(Movie) then) =
       _$MovieCopyWithImpl<$Res>;
-  $Res call({String name, Uri poster, DateTime releaseDate, double userScore});
+  $Res call(
+      {int id,
+      String title,
+      Uri poster,
+      DateTime releaseDate,
+      double userScore});
 }
 
 /// @nodoc
@@ -42,15 +48,20 @@ class _$MovieCopyWithImpl<$Res> implements $MovieCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? name = freezed,
+    Object? id = freezed,
+    Object? title = freezed,
     Object? poster = freezed,
     Object? releaseDate = freezed,
     Object? userScore = freezed,
   }) {
     return _then(_value.copyWith(
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
       poster: poster == freezed
           ? _value.poster
@@ -73,7 +84,12 @@ abstract class _$$_MovieCopyWith<$Res> implements $MovieCopyWith<$Res> {
   factory _$$_MovieCopyWith(_$_Movie value, $Res Function(_$_Movie) then) =
       __$$_MovieCopyWithImpl<$Res>;
   @override
-  $Res call({String name, Uri poster, DateTime releaseDate, double userScore});
+  $Res call(
+      {int id,
+      String title,
+      Uri poster,
+      DateTime releaseDate,
+      double userScore});
 }
 
 /// @nodoc
@@ -87,15 +103,20 @@ class __$$_MovieCopyWithImpl<$Res> extends _$MovieCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? name = freezed,
+    Object? id = freezed,
+    Object? title = freezed,
     Object? poster = freezed,
     Object? releaseDate = freezed,
     Object? userScore = freezed,
   }) {
     return _then(_$_Movie(
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
       poster: poster == freezed
           ? _value.poster
@@ -117,13 +138,16 @@ class __$$_MovieCopyWithImpl<$Res> extends _$MovieCopyWithImpl<$Res>
 
 class _$_Movie implements _Movie {
   const _$_Movie(
-      {required this.name,
+      {required this.id,
+      required this.title,
       required this.poster,
       required this.releaseDate,
       required this.userScore});
 
   @override
-  final String name;
+  final int id;
+  @override
+  final String title;
   @override
   final Uri poster;
   @override
@@ -133,7 +157,7 @@ class _$_Movie implements _Movie {
 
   @override
   String toString() {
-    return 'Movie(name: $name, poster: $poster, releaseDate: $releaseDate, userScore: $userScore)';
+    return 'Movie(id: $id, title: $title, poster: $poster, releaseDate: $releaseDate, userScore: $userScore)';
   }
 
   @override
@@ -141,7 +165,8 @@ class _$_Movie implements _Movie {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Movie &&
-            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality().equals(other.poster, poster) &&
             const DeepCollectionEquality()
                 .equals(other.releaseDate, releaseDate) &&
@@ -151,7 +176,8 @@ class _$_Movie implements _Movie {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(title),
       const DeepCollectionEquality().hash(poster),
       const DeepCollectionEquality().hash(releaseDate),
       const DeepCollectionEquality().hash(userScore));
@@ -164,13 +190,16 @@ class _$_Movie implements _Movie {
 
 abstract class _Movie implements Movie {
   const factory _Movie(
-      {required final String name,
+      {required final int id,
+      required final String title,
       required final Uri poster,
       required final DateTime releaseDate,
       required final double userScore}) = _$_Movie;
 
   @override
-  String get name => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  @override
+  String get title => throw _privateConstructorUsedError;
   @override
   Uri get poster => throw _privateConstructorUsedError;
   @override

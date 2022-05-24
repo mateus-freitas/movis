@@ -20,10 +20,11 @@ MovieDto _$MovieDtoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MovieDto {
-  String get name => throw _privateConstructorUsedError;
-  Uri get poster => throw _privateConstructorUsedError;
-  DateTime get releaseDate => throw _privateConstructorUsedError;
-  double get userScore => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  String get posterPath => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  String get releaseDate => throw _privateConstructorUsedError;
+  double get voteAverage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,12 @@ mixin _$MovieDto {
 abstract class $MovieDtoCopyWith<$Res> {
   factory $MovieDtoCopyWith(MovieDto value, $Res Function(MovieDto) then) =
       _$MovieDtoCopyWithImpl<$Res>;
-  $Res call({String name, Uri poster, DateTime releaseDate, double userScore});
+  $Res call(
+      {String title,
+      String posterPath,
+      int id,
+      String releaseDate,
+      double voteAverage});
 }
 
 /// @nodoc
@@ -48,27 +54,32 @@ class _$MovieDtoCopyWithImpl<$Res> implements $MovieDtoCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? name = freezed,
-    Object? poster = freezed,
+    Object? title = freezed,
+    Object? posterPath = freezed,
+    Object? id = freezed,
     Object? releaseDate = freezed,
-    Object? userScore = freezed,
+    Object? voteAverage = freezed,
   }) {
     return _then(_value.copyWith(
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
-      poster: poster == freezed
-          ? _value.poster
-          : poster // ignore: cast_nullable_to_non_nullable
-              as Uri,
+      posterPath: posterPath == freezed
+          ? _value.posterPath
+          : posterPath // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       releaseDate: releaseDate == freezed
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      userScore: userScore == freezed
-          ? _value.userScore
-          : userScore // ignore: cast_nullable_to_non_nullable
+              as String,
+      voteAverage: voteAverage == freezed
+          ? _value.voteAverage
+          : voteAverage // ignore: cast_nullable_to_non_nullable
               as double,
     ));
   }
@@ -80,7 +91,12 @@ abstract class _$$_MovieDtoCopyWith<$Res> implements $MovieDtoCopyWith<$Res> {
           _$_MovieDto value, $Res Function(_$_MovieDto) then) =
       __$$_MovieDtoCopyWithImpl<$Res>;
   @override
-  $Res call({String name, Uri poster, DateTime releaseDate, double userScore});
+  $Res call(
+      {String title,
+      String posterPath,
+      int id,
+      String releaseDate,
+      double voteAverage});
 }
 
 /// @nodoc
@@ -95,27 +111,32 @@ class __$$_MovieDtoCopyWithImpl<$Res> extends _$MovieDtoCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? name = freezed,
-    Object? poster = freezed,
+    Object? title = freezed,
+    Object? posterPath = freezed,
+    Object? id = freezed,
     Object? releaseDate = freezed,
-    Object? userScore = freezed,
+    Object? voteAverage = freezed,
   }) {
     return _then(_$_MovieDto(
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
-      poster: poster == freezed
-          ? _value.poster
-          : poster // ignore: cast_nullable_to_non_nullable
-              as Uri,
+      posterPath: posterPath == freezed
+          ? _value.posterPath
+          : posterPath // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       releaseDate: releaseDate == freezed
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      userScore: userScore == freezed
-          ? _value.userScore
-          : userScore // ignore: cast_nullable_to_non_nullable
+              as String,
+      voteAverage: voteAverage == freezed
+          ? _value.voteAverage
+          : voteAverage // ignore: cast_nullable_to_non_nullable
               as double,
     ));
   }
@@ -125,26 +146,29 @@ class __$$_MovieDtoCopyWithImpl<$Res> extends _$MovieDtoCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_MovieDto implements _MovieDto {
   const _$_MovieDto(
-      {required this.name,
-      required this.poster,
+      {required this.title,
+      required this.posterPath,
+      required this.id,
       required this.releaseDate,
-      required this.userScore});
+      required this.voteAverage});
 
   factory _$_MovieDto.fromJson(Map<String, dynamic> json) =>
       _$$_MovieDtoFromJson(json);
 
   @override
-  final String name;
+  final String title;
   @override
-  final Uri poster;
+  final String posterPath;
   @override
-  final DateTime releaseDate;
+  final int id;
   @override
-  final double userScore;
+  final String releaseDate;
+  @override
+  final double voteAverage;
 
   @override
   String toString() {
-    return 'MovieDto(name: $name, poster: $poster, releaseDate: $releaseDate, userScore: $userScore)';
+    return 'MovieDto(title: $title, posterPath: $posterPath, id: $id, releaseDate: $releaseDate, voteAverage: $voteAverage)';
   }
 
   @override
@@ -152,21 +176,25 @@ class _$_MovieDto implements _MovieDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MovieDto &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.poster, poster) &&
+            const DeepCollectionEquality().equals(other.title, title) &&
+            const DeepCollectionEquality()
+                .equals(other.posterPath, posterPath) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
                 .equals(other.releaseDate, releaseDate) &&
-            const DeepCollectionEquality().equals(other.userScore, userScore));
+            const DeepCollectionEquality()
+                .equals(other.voteAverage, voteAverage));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(poster),
+      const DeepCollectionEquality().hash(title),
+      const DeepCollectionEquality().hash(posterPath),
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(releaseDate),
-      const DeepCollectionEquality().hash(userScore));
+      const DeepCollectionEquality().hash(voteAverage));
 
   @JsonKey(ignore: true)
   @override
@@ -181,21 +209,24 @@ class _$_MovieDto implements _MovieDto {
 
 abstract class _MovieDto implements MovieDto {
   const factory _MovieDto(
-      {required final String name,
-      required final Uri poster,
-      required final DateTime releaseDate,
-      required final double userScore}) = _$_MovieDto;
+      {required final String title,
+      required final String posterPath,
+      required final int id,
+      required final String releaseDate,
+      required final double voteAverage}) = _$_MovieDto;
 
   factory _MovieDto.fromJson(Map<String, dynamic> json) = _$_MovieDto.fromJson;
 
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
   @override
-  Uri get poster => throw _privateConstructorUsedError;
+  String get posterPath => throw _privateConstructorUsedError;
   @override
-  DateTime get releaseDate => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   @override
-  double get userScore => throw _privateConstructorUsedError;
+  String get releaseDate => throw _privateConstructorUsedError;
+  @override
+  double get voteAverage => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_MovieDtoCopyWith<_$_MovieDto> get copyWith =>

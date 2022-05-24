@@ -16,9 +16,19 @@ Future<void> setEnvironment(Env env) async {
 
 const _baseUrlKey = 'BASE_URL';
 
-String get baseUrl {
+String get tmdbBaseUrl {
   return dotenv.get(_baseUrlKey);
 }
+
+String get tmdbApiKey {
+  return dotenv.get('TMDB_API_KEY');
+}
+
+String get baseTMDBFullPosterUrl =>
+    'https://image.tmdb.org/t/p/w600_and_h900_bestv2';
+
+String get baseTMDBThumbPosterUrl =>
+    'https://www.themoviedb.org/t/p/w440_and_h660_face';
 
 const _productionKey = 'PRODUCTION';
 bool get isProd => dotenv.get(_productionKey) == 'true';
