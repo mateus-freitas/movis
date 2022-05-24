@@ -5,7 +5,7 @@ import 'package:movis/presentation/core/theme/app_colors.dart';
 
 PreferredSizeWidget getPlatformAppBar(BuildContext context, Widget title,
     {Widget? trailing}) {
-  const bgColor = AppColors.neutral20;
+  const bgColor = AppColors.neutral10;
   if (isAppleDevice) {
     return CupertinoNavigationBar(
       backgroundColor: bgColor,

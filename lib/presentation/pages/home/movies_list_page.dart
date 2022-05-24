@@ -87,19 +87,11 @@ class _MainContent extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Flexible(
-                  child: Text(
-                    localize(context).popularMovies,
-                    style: const TextStyle(
-                        fontSize: 32, fontWeight: FontWeight.w700),
-                  ),
-                ),
-              ],
+            Text(
+              localize(context).popularMovies,
+              style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w600),
             ),
-            const SizedBox(height: Margin.nano),
+            const SizedBox(height: Margin.xs),
             GridView.builder(
               scrollDirection: Axis.vertical,
               physics: const NeverScrollableScrollPhysics(),

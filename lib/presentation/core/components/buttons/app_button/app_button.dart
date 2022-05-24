@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movis/presentation/core/localization/app_localizations.dart';
 
 enum ButtonType { primary, secondary, text }
 
@@ -8,6 +9,7 @@ class AppButton extends StatelessWidget {
   final bool isLoading;
   final IconData? iconData;
   final String title;
+  final String? semanticsLabel;
 
   const AppButton({
     Key? key,
@@ -16,6 +18,7 @@ class AppButton extends StatelessWidget {
     this.isLoading = false,
     this.iconData,
     required this.title,
+    this.semanticsLabel,
   }) : super(key: key);
 
   void Function()? get _onPressedAction {
@@ -35,13 +38,21 @@ class AppButton extends StatelessWidget {
             onPressed: _onPressedAction,
             icon: _icon!,
             label: _ButtonChild(
-                title: title, buttonStyle: buttonStyle, isLoading: isLoading),
+              title: title,
+              buttonStyle: buttonStyle,
+              isLoading: isLoading,
+              semanticsLabel: semanticsLabel,
+            ),
           );
         }
         return ElevatedButton(
           onPressed: _onPressedAction,
           child: _ButtonChild(
-              title: title, buttonStyle: buttonStyle, isLoading: isLoading),
+            title: title,
+            buttonStyle: buttonStyle,
+            isLoading: isLoading,
+            semanticsLabel: semanticsLabel,
+          ),
         );
       case ButtonType.secondary:
         final buttonStyle = Theme.of(context).outlinedButtonTheme.style;
@@ -50,13 +61,21 @@ class AppButton extends StatelessWidget {
             onPressed: _onPressedAction,
             icon: _icon!,
             label: _ButtonChild(
-                title: title, buttonStyle: buttonStyle, isLoading: isLoading),
+              title: title,
+              buttonStyle: buttonStyle,
+              isLoading: isLoading,
+              semanticsLabel: semanticsLabel,
+            ),
           );
         }
         return OutlinedButton(
           onPressed: _onPressedAction,
           child: _ButtonChild(
-              title: title, buttonStyle: buttonStyle, isLoading: isLoading),
+            title: title,
+            buttonStyle: buttonStyle,
+            isLoading: isLoading,
+            semanticsLabel: semanticsLabel,
+          ),
         );
       case ButtonType.text:
         final buttonStyle = Theme.of(context).textButtonTheme.style;
@@ -65,13 +84,21 @@ class AppButton extends StatelessWidget {
             onPressed: _onPressedAction,
             icon: _icon!,
             label: _ButtonChild(
-                title: title, buttonStyle: buttonStyle, isLoading: isLoading),
+              title: title,
+              buttonStyle: buttonStyle,
+              isLoading: isLoading,
+              semanticsLabel: semanticsLabel,
+            ),
           );
         }
         return TextButton(
           onPressed: _onPressedAction,
           child: _ButtonChild(
-              title: title, buttonStyle: buttonStyle, isLoading: isLoading),
+            title: title,
+            buttonStyle: buttonStyle,
+            isLoading: isLoading,
+            semanticsLabel: semanticsLabel,
+          ),
         );
     }
   }
@@ -81,24 +108,34 @@ class _ButtonChild extends StatelessWidget {
   final String title;
   final bool isLoading;
   final ButtonStyle? buttonStyle;
+  final String? semanticsLabel;
 
   const _ButtonChild(
       {Key? key,
       required this.title,
       required this.buttonStyle,
-      required this.isLoading})
+      required this.isLoading,
+      this.semanticsLabel})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     if (isLoading) {
-      return const SizedBox(
-        height: 20,
-        child: CircularProgressIndicator.adaptive(
-          strokeWidth: 2,
+      return Semantics(
+        label: localize(context)
+            .loadingButtonSemantics
+            .replaceFirst('X', semanticsLabel ?? title),
+        child: const SizedBox(
+          height: 20,
+          child: CircularProgressIndicator.adaptive(
+            strokeWidth: 2,
+          ),
         ),
       );
     }
-    return Text(title);
+    return Text(
+      title,
+      semanticsLabel: semanticsLabel,
+    );
   }
 }

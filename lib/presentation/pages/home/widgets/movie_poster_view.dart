@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movis/presentation/core/theme/app_colors.dart';
 
 class MoviePosterView extends StatelessWidget {
   final Uri posterImage;
@@ -43,7 +44,7 @@ class MoviePosterView extends StatelessWidget {
               right: 0,
               top: 0,
               child: Container(
-                color: Colors.green,
+                color: AppColors.getColorForMovieScore(movieScore),
                 padding: const EdgeInsets.fromLTRB(6, 6, 8, 3),
                 child: Text(
                   movieScore.toStringAsFixed(1),

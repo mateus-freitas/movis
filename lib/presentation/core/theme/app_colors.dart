@@ -46,4 +46,10 @@ abstract class AppColors {
   static const dividerLight = Colors.white38;
 
   static const neutral = Color(0xFF);
+
+  static Color getColorForMovieScore(double score) {
+    if (score > 7.0) return const Color.fromARGB(255, 3, 119, 12);
+    if (score >= 5) return const Color.fromARGB(255, 231, 188, 0);
+    return const Color.fromARGB(255, 126, 0, 0);
+  }
 }
