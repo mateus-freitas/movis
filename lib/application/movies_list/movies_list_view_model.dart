@@ -1,3 +1,4 @@
+import 'package:injectable/injectable.dart';
 import 'package:movis/domain/movies_list/movie.dart';
 
 abstract class IMoviesListViewModel {
@@ -5,6 +6,7 @@ abstract class IMoviesListViewModel {
   set movies(List<Movie>? newValue);
 }
 
+@Injectable(as: IMoviesListViewModel)
 class MoviesListViewModel implements IMoviesListViewModel {
   List<Movie>? _movies;
 

@@ -1,7 +1,9 @@
 class TheMovieDBException implements Exception {
-  final String? code;
+  final int statusCode;
+  final String message;
 
-  TheMovieDBException({this.code}) : super();
+  TheMovieDBException({required this.statusCode, required this.message})
+      : super();
 }
 
 class FavoritesDBException implements Exception {}

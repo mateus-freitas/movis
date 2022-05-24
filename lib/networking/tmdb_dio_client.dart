@@ -1,6 +1,8 @@
+import 'package:injectable/injectable.dart';
 import 'package:movis/infrastructure/core/constants.dart' as constants;
 import 'package:movis/infrastructure/networking/i_dio_client.dart';
 
+@singleton
 class TMDBClient extends IDioClient {
   @override
   int get baseConnectTimeout => constants.defaultConnectTimeout;
