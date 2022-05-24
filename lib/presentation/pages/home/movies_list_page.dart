@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:movis/application/movies_list/movies_list_controller.dart';
 import 'package:movis/application/movies_list/movies_list_view_model.dart';
+import 'package:movis/presentation/core/components/buttons/app_button/app_button.dart';
+import 'package:movis/presentation/core/components/platform_app_bar.dart';
 import 'package:movis/presentation/core/constants.dart';
 import 'package:movis/presentation/core/localization/app_localizations.dart';
 import 'package:movis/presentation/core/responsive/responsive_layout.dart';
+import 'package:movis/presentation/pages/home/widgets/movie_poster_view.dart';
 
 class MoviesListPage extends StatefulWidget {
   final IMoviesListController controller;
@@ -35,6 +38,18 @@ class _MoviesListPageState extends State<MoviesListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: getPlatformAppBar(
+          context,
+          Text(
+            localize(context).appTitle.toLowerCase(),
+            style: const TextStyle(
+                color: Colors.white, fontWeight: FontWeight.w900),
+          ),
+          trailing: AppButton(
+            type: ButtonType.text,
+            title: localize(context).favorites,
+            onPressed: () {},
+          )),
       body: SafeArea(child: _MainContent(vm: _vm)),
     );
   }
@@ -62,7 +77,7 @@ class _MainContent extends StatelessWidget {
       );
     }
     if (vm.movies == null) {
-      return Center(
+      return const Center(
         child: CircularProgressIndicator.adaptive(),
       );
     }
@@ -72,16 +87,18 @@ class _MainContent extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              localize(context).popularMovies,
-              style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w800),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Flexible(
+                  child: Text(
+                    localize(context).popularMovies,
+                    style: const TextStyle(
+                        fontSize: 32, fontWeight: FontWeight.w700),
+                  ),
+                ),
+              ],
             ),
-            TextButton(
-                onPressed: () {},
-                style: ButtonStyle(
-                    padding:
-                        MaterialStateProperty.all(const EdgeInsets.all(0))),
-                child: Text('${localize(context).favoriteMovies} >')),
             const SizedBox(height: Margin.nano),
             GridView.builder(
               scrollDirection: Axis.vertical,
@@ -95,46 +112,10 @@ class _MainContent extends StatelessWidget {
                   crossAxisSpacing: Margin.xxs),
               itemBuilder: (context, index) {
                 final movie = vm.movies![index];
-                return Container(
-                  clipBehavior: Clip.hardEdge,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Stack(
-                    children: [
-                      Image.network(movie.poster.toString()),
-                      Container(
-                        decoration: const BoxDecoration(
-                            gradient: LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: [Colors.transparent, Colors.black])),
-                      ),
-                      Positioned(
-                          bottom: 16,
-                          left: 16,
-                          right: 16,
-                          child: Text(
-                            movie.title,
-                            style: const TextStyle(
-                                color: Colors.white, fontSize: 16),
-                            maxLines: 3,
-                            overflow: TextOverflow.ellipsis,
-                          )),
-                      Positioned(
-                          right: 0,
-                          top: 0,
-                          child: Container(
-                            color: Colors.green,
-                            padding: const EdgeInsets.fromLTRB(6, 6, 8, 3),
-                            child: Text(
-                              '${movie.userScore}',
-                              style: const TextStyle(color: Colors.white),
-                            ),
-                          ))
-                    ],
-                  ),
-                );
+                return MoviePosterView(
+                    posterImage: movie.poster,
+                    title: movie.title,
+                    movieScore: movie.userScore);
               },
             )
           ],
