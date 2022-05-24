@@ -12,6 +12,9 @@ class ResponsiveLayout extends StatelessWidget {
   static bool isSmallScreen(BuildContext context) =>
       MediaQuery.of(context).size.width < mediumScreenSize;
 
+  static bool isLargeScreen(BuildContext context) =>
+      MediaQuery.of(context).size.width >= largeScreenSize;
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
