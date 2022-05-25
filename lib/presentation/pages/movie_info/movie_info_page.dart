@@ -51,8 +51,7 @@ class _MovieInfoPageState extends State<MovieInfoPage> {
   }
 
   void _openMovieTrailer() async {
-    final trailerResult = await _controller.getMovieTrailerIfNeeded(
-        _vm, localize(context).localeName);
+    final trailerResult = await _controller.getMovieTrailerIfNeeded(_vm, null);
     trailerResult.fold((failure) {
       showDialog(
           context: context,
