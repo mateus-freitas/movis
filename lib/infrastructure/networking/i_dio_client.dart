@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
+import 'package:movis/core/error/exceptions.dart';
 import 'package:movis/infrastructure/core/constants.dart';
 import 'package:movis/infrastructure/networking/i_request_handler.dart';
 
@@ -50,6 +50,12 @@ abstract class IDioClient {
           data: request.data,
           queryParameters: request.queryParameters,
           options: Options(method: request.method.name));
+
+      if (response.data?['success'] == false) {
+        throw TheMovieDBException(
+            statusCode: response.data['status_code'],
+            message: response.data['status_message']);
+      }
       return response;
     } catch (_) {
       rethrow;

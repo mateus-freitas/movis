@@ -1,17 +1,17 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:movis/infrastructure/movies_list/movies_list_remote_data_source.dart';
 import 'package:movis/infrastructure/movies_list/movies_list_repository.dart';
+import 'movies_list_repository_test.mocks.dart';
 
-class MockMoviesListRemoteDataSource extends Mock
-    implements MoviesListRemoteDataSourceImpl {}
-
+@GenerateMocks([MoviesListRemoteDataSourceImpl])
 void main() {
   late MoviesListRepositoryImpl repository;
-  late MockMoviesListRemoteDataSource remoteDataSource;
+  late MockMoviesListRemoteDataSourceImpl remoteDataSource;
 
   setUp(() {
-    remoteDataSource = MockMoviesListRemoteDataSource();
+    remoteDataSource = MockMoviesListRemoteDataSourceImpl();
     repository = MoviesListRepositoryImpl(remoteDataSource);
   });
 

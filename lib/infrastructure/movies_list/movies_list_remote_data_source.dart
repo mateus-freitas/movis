@@ -23,16 +23,11 @@ class MoviesListRemoteDataSourceImpl implements IMoviesListRemoteDataSource {
     try {
       final moviesRequest = GetTrendingMoviesRequest.week();
       final response = await _client.perform(moviesRequest);
-      // print(response.data);
       final data = response.data;
       if (data is! Map<String, dynamic>) {
         throw TheMovieDBException(
             statusCode: -1,
             message: 'The response data is in the wrong format.');
-      }
-      if (data['success'] == false) {
-        throw TheMovieDBException(
-            statusCode: data['status_code'], message: data['status_message']);
       }
       final results = data['results'];
       if (results is! List<dynamic>) {

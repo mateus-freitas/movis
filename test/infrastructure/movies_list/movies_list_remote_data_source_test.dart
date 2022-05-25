@@ -1,16 +1,16 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mockito/annotations.dart';
 import 'package:movis/infrastructure/movies_list/movies_list_remote_data_source.dart';
 import 'package:movis/networking/tmdb_dio_client.dart';
+import 'movies_list_remote_data_source_test.mocks.dart';
 
-class MockDioClient extends Mock implements TMDBClient {}
-
+@GenerateMocks([TMDBClient])
 void main() {
-  late MockDioClient mockClient;
+  late MockTMDBClient mockClient;
   late MoviesListRemoteDataSourceImpl dataSource;
 
   setUp(() {
-    mockClient = MockDioClient();
+    mockClient = MockTMDBClient();
     dataSource = MoviesListRemoteDataSourceImpl(mockClient);
   });
 

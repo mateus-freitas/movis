@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movis/presentation/core/components/scaffold/platform_app_bar.dart';
+import 'package:movis/presentation/core/components/scaffold/app_bar.dart';
 import 'package:movis/presentation/core/constants.dart';
 
 class AppScaffold extends StatelessWidget {
@@ -40,7 +40,7 @@ class AppScaffold extends StatelessWidget {
         )),
         backgroundColor: backgroundColor,
         appBar: showNavBar
-            ? getPlatformAppBar(
+            ? getAppBar(
                 context,
                 Text(
                   title!,

@@ -1,25 +1,23 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:movis/application/movies_list/movies_list_controller.dart';
 import 'package:movis/application/movies_list/movies_list_view_model.dart';
 import 'package:movis/core/error/failures.dart';
 import 'package:movis/domain/movies_list/movie.dart';
 import 'package:movis/infrastructure/movies_list/movies_list_repository.dart';
+import 'movies_list_controller_test.mocks.dart';
 
-class MockMoviesListViewModel extends Mock implements MoviesListViewModel {}
-
-class MockMoviesListRepository extends Mock
-    implements MoviesListRepositoryImpl {}
-
+@GenerateMocks([MoviesListViewModel, MoviesListRepositoryImpl])
 void main() {
   late MockMoviesListViewModel mockViewModel;
-  late MockMoviesListRepository mockRepository;
+  late MockMoviesListRepositoryImpl mockRepository;
   late MoviesListController controller;
 
   setUp(() {
     mockViewModel = MockMoviesListViewModel();
-    mockRepository = MockMoviesListRepository();
+    mockRepository = MockMoviesListRepositoryImpl();
     controller = MoviesListController(mockRepository);
   });
 
@@ -42,11 +40,11 @@ void main() {
         (_) async => Right<TheMovieDBFailure, List<Movie>>(moviesList));
 
     // act
-    final moviesResult = await controller.loadMovies(mockViewModel);
+    await controller.loadMovies(mockViewModel);
 
     // assert
     verify(mockViewModel.movies = moviesList);
   });
 
-  test('should return failure when there is an error', () {});
+  test('should set the failure on view model when there is an error', () {});
 }

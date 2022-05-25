@@ -7,8 +7,6 @@ abstract class IMoviesListViewModel {
   set movies(List<Movie>? newValue);
   TheMovieDBFailure? get moviesFailure;
   set moviesFailure(TheMovieDBFailure? newValue);
-  bool get isLoading;
-  set isLoading(bool newValue);
 }
 
 @Singleton(as: IMoviesListViewModel)
@@ -31,13 +29,5 @@ class MoviesListViewModel implements IMoviesListViewModel {
   @override
   set moviesFailure(TheMovieDBFailure? newValue) {
     _movieDBFailure = newValue;
-  }
-
-  @override
-  bool get isLoading => _isLoading;
-
-  @override
-  set isLoading(bool newValue) {
-    _isLoading = newValue;
   }
 }

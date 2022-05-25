@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:movis/application/movie_info/movie_info_controller.dart';
+import 'package:movis/application/movie_info/movie_info_view_model.dart';
 import 'package:movis/application/movies_list/movies_list_controller.dart';
 import 'package:movis/application/movies_list/movies_list_view_model.dart';
+import 'package:movis/core/injection.dart';
 import 'package:movis/presentation/core/components/buttons/app_button/app_button.dart';
 import 'package:movis/presentation/core/components/scaffold/app_scaffold.dart';
 import 'package:movis/presentation/core/constants.dart';
@@ -60,8 +63,8 @@ class _MainContent extends StatelessWidget {
 
   int _getGridCrossAxisCount(BuildContext context) {
     if (ResponsiveLayout.isSmallScreen(context)) return 2;
-    if (ResponsiveLayout.isLargeScreen(context)) return 7;
-    return 5;
+    if (ResponsiveLayout.isLargeScreen(context)) return 5;
+    return 4;
   }
 
   @override
@@ -115,7 +118,11 @@ class _MainContent extends StatelessWidget {
                   movieScore: movie.userScore,
                   onTap: () {
                     Navigator.of(context).push(getPlatformPageRoute(
-                        builder: (context) => MovieInfoPage(movie: movie)));
+                        fullscreenDialog: true,
+                        builder: (context) => MovieInfoPage(
+                              controller: sl<IMovieInfoController>(),
+                              viewModel: sl<IMovieInfoViewModel>(param1: movie),
+                            )));
                   },
                 );
               },
