@@ -105,10 +105,14 @@ class _MovieInfoPageState extends State<MovieInfoPage> {
         const SizedBox(height: Margin.quarck),
         _releaseYearAndScore,
         const SizedBox(height: Margin.xxs),
-        AppButton(
-          type: ButtonType.secondary,
-          title: localize(context).viewTrailer,
-          onPressed: _openMovieTrailer,
+        Row(
+          children: [
+            AppButton(
+              type: ButtonType.primary,
+              title: localize(context).viewTrailer,
+              onPressed: _openMovieTrailer,
+            ),
+          ],
         ),
         const SizedBox(height: Margin.xxs),
         _LoadedContent(
