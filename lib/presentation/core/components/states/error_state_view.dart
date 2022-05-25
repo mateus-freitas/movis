@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movis/presentation/core/components/buttons/app_button/app_button.dart';
-import 'package:movis/presentation/core/constants.dart';
+import 'package:movis/presentation/core/helpers/constants.dart';
 import 'package:movis/presentation/core/localization/app_localizations.dart';
 
 class ErrorStateView extends StatelessWidget {

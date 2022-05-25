@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:movis/application/movies_list/movies_list_controller.dart';
 import 'package:movis/application/movies_list/movies_list_view_model.dart';
 import 'package:movis/core/injection.dart';
-import 'package:movis/presentation/core/constants.dart';
+import 'package:movis/presentation/core/helpers/constants.dart';
 import 'package:movis/presentation/core/router/routes.dart';
 import 'package:movis/presentation/pages/home/movies_list_page.dart';
 

@@ -8,7 +8,8 @@ import 'package:movis/domain/movies_list/movie.dart';
 import 'package:movis/presentation/core/components/buttons/app_button/app_button.dart';
 import 'package:movis/presentation/core/components/scaffold/app_scaffold.dart';
 import 'package:movis/presentation/core/components/states/error_state_view.dart';
-import 'package:movis/presentation/core/constants.dart';
+import 'package:movis/presentation/core/helpers/constants.dart';
+import 'package:movis/presentation/core/helpers/errors.dart';
 import 'package:movis/presentation/core/localization/app_localizations.dart';
 import 'package:movis/presentation/core/responsive/responsive_layout.dart';
 import 'package:movis/presentation/core/router/router.dart';
@@ -84,14 +85,7 @@ class _MainContent extends StatelessWidget {
   Widget build(BuildContext context) {
     if (vm.moviesFailure != null) {
       return ErrorStateView(
-        errorMessage: vm.moviesFailure!.when<String>(
-          generalError: (statusCode, message) =>
-              localize(context).generalErrorMessage,
-          serviceOffline: (statusCode, message) =>
-              localize(context).tmdbOffline,
-          invalidId: (statusCode, message) =>
-              localize(context).generalErrorMessage,
-        ),
+        errorMessage: getMessageFromFailure(context, vm.moviesFailure!),
         onTryAgain: onReload,
       );
     }

@@ -5,4 +5,6 @@ import 'package:movis/domain/movie_info/movie_info.dart';
 abstract class IMovieInfoRepository {
   Future<Either<TheMovieDBFailure, MovieInfo>> getMovieInfo(
       int id, String? lang);
+  Future<Either<TheMovieDBFailure, Either<Unit, Uri>>> getMovieTrailer(
+      int id, String? lang);
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movis/presentation/core/components/scaffold/app_bar.dart';
-import 'package:movis/presentation/core/constants.dart';
+import 'package:movis/presentation/core/helpers/constants.dart';
 
 class AppScaffold extends StatelessWidget {
   final Widget body;

@@ -17,6 +17,8 @@
 
   "overview": "Sinopse",
   "noOverview": "Este filme não possui sinopse.",
+  "viewTrailer": "Ver Trailer",
+  "noTrailerMessage": "Este filme não possui trailer.", 
   "originalLanguage": "Idioma original",
   "status": "Situação",
   "budget": "Orçamento",

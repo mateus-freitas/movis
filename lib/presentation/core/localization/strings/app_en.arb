@@ -17,6 +17,8 @@
 
   "overview": "Overview",
   "noOverview": "This movie does not have an overview.",
+  "viewTrailer": "View Trailer",
+  "noTrailerMessage": "This movie does not have a trailer.",  
   "originalLanguage": "Original Language",
   "status": "Status",
   "budget": "Budget",

@@ -27,4 +27,22 @@ class MovieInfoRepositoryImpl implements IMovieInfoRepository {
           statusCode: -1, message: 'Unknown error'));
     }
   }
+
+  @override
+  Future<Either<TheMovieDBFailure, Either<Unit, Uri>>> getMovieTrailer(
+      int id, String? lang) async {
+    try {
+      final trailerUri = await _dataSource.getMovieOfficialTrailer(id, lang);
+      if (trailerUri != null) {
+        return Right(Right(trailerUri));
+      }
+      return const Right(Left(unit));
+    } on TheMovieDBException catch (e) {
+      return Left(TheMovieDBFailure.generalError(
+          statusCode: e.statusCode, message: e.message));
+    } catch (e) {
+      return const Left(TheMovieDBFailure.generalError(
+          statusCode: -1, message: 'Unknown error'));
+    }
+  }
 }
