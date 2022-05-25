@@ -68,7 +68,7 @@ class _MoviesListPageState extends State<MoviesListPage> {
 
 class _MainContent extends StatelessWidget {
   final IMoviesListViewModel vm;
-  final void Function() onReload;
+  final VoidCallback onReload;
 
   const _MainContent({Key? key, required this.vm, required this.onReload})
       : super(key: key);

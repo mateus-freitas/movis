@@ -6,7 +6,7 @@ class MoviePosterView extends StatelessWidget {
   final Uri posterImage;
   final String title;
   final double movieScore;
-  final void Function()? onTap;
+  final VoidCallback? onTap;
 
   const MoviePosterView(
       {Key? key,

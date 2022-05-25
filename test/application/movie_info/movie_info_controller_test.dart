@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
 import 'package:movis/application/movie_info/movie_info_controller.dart';
 import 'package:movis/infrastructure/movie_info/movie_info_repository_impl.dart';
 import 'movie_info_controller_test.mocks.dart';

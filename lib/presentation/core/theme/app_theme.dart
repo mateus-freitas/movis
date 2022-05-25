@@ -65,7 +65,7 @@ TextTheme _appTextThemeFrom(TextTheme theme, {bool isDark = true}) {
           height: 1.5,
           fontWeight: FontWeight.w400),
       bodyText2: baseStyle.copyWith(
-          fontSize: isDesktop ? 16 : 14,
+          fontSize: isDesktop ? 16 : 12,
           height: 1.5,
           fontWeight: FontWeight.w400));
 }

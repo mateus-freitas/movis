@@ -14,7 +14,6 @@ class GetMovieDetailsRequest extends IRequestHandler {
   String get path => '/movie/$movieId';
 
   @override
-  // TODO: implement queryParameters
   Map<String, String>? get queryParameters =>
       lang != null ? {'language': lang!} : null;
 }

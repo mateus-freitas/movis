@@ -5,7 +5,7 @@ enum ButtonType { primary, secondary, text }
 
 class AppButton extends StatelessWidget {
   final ButtonType type;
-  final void Function()? onPressed;
+  final VoidCallback? onPressed;
   final bool isLoading;
   final IconData? iconData;
   final String title;
@@ -21,7 +21,7 @@ class AppButton extends StatelessWidget {
     this.semanticsLabel,
   }) : super(key: key);
 
-  void Function()? get _onPressedAction {
+  VoidCallback? get _onPressedAction {
     if (isLoading) return () {};
     return onPressed;
   }

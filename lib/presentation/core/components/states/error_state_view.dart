@@ -5,7 +5,7 @@ import 'package:movis/presentation/core/localization/app_localizations.dart';
 
 class ErrorStateView extends StatelessWidget {
   final String errorMessage;
-  final void Function()? onTryAgain;
+  final VoidCallback? onTryAgain;
 
   const ErrorStateView({Key? key, required this.errorMessage, this.onTryAgain})
       : super(key: key);

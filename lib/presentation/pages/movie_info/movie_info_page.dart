@@ -7,6 +7,7 @@ import 'package:movis/presentation/core/constants.dart';
 import 'package:movis/presentation/core/localization/app_localizations.dart';
 import 'package:movis/presentation/core/responsive/responsive_layout.dart';
 import 'package:movis/presentation/core/theme/app_colors.dart';
+import 'package:movis/presentation/pages/movie_info/heart_animation_widget.dart';
 
 class MovieInfoPage extends StatefulWidget {
   final IMovieInfoController controller;
@@ -66,12 +67,42 @@ class _MovieInfoPageState extends State<MovieInfoPage> {
         ],
       );
 
+  List<Widget> get _rightColumn => [
+        _movieTitle,
+        const SizedBox(height: Margin.quarck),
+        _releaseYearAndScore,
+        const SizedBox(height: Margin.xxs),
+        _LoadedContent(
+          vm: _vm,
+          onReload: _onReload,
+        )
+      ];
+
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
       title: _vm.movie.title,
+      trailing: AnimatedHeartButton(
+        initialIsLiked: _vm.isLiked,
+        onTap: (bool newValue) {
+          _vm.isLiked = newValue;
+        },
+      ),
       body: ResponsiveLayout(
-        large: Container(),
+        large: SingleChildScrollView(
+          child: Row(children: [
+            Hero(
+                tag: _vm.movie.poster.toString(),
+                child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 250),
+                    child: Image.network(_vm.movie.poster.toString()))),
+            Expanded(
+              child: Column(
+                children: _rightColumn,
+              ),
+            )
+          ]),
+        ),
         small: ListView(
           padding: const EdgeInsets.all(Margin.xs),
           children: [
@@ -79,14 +110,7 @@ class _MovieInfoPageState extends State<MovieInfoPage> {
                 tag: _vm.movie.poster.toString(),
                 child: Image.network(_vm.movie.poster.toString())),
             const SizedBox(height: Margin.xxs),
-            _movieTitle,
-            const SizedBox(height: Margin.quarck),
-            _releaseYearAndScore,
-            const SizedBox(height: Margin.xxs),
-            _LoadedContent(
-              vm: _vm,
-              onReload: _onReload,
-            )
+            ..._rightColumn,
           ],
         ),
       ),
@@ -96,7 +120,7 @@ class _MovieInfoPageState extends State<MovieInfoPage> {
 
 class _LoadedContent extends StatelessWidget {
   final IMovieInfoViewModel vm;
-  final void Function() onReload;
+  final VoidCallback onReload;
 
   const _LoadedContent({Key? key, required this.vm, required this.onReload})
       : super(key: key);
@@ -126,7 +150,7 @@ class _LoadedContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (info.tagline != null && info.tagline!.isNotEmpty) ...[
-          Text(
+          SelectableText(
             info.tagline!,
             style: Theme.of(context).textTheme.bodyText1?.copyWith(
                   fontStyle: FontStyle.italic,
@@ -140,7 +164,7 @@ class _LoadedContent extends StatelessWidget {
           style: Theme.of(context).textTheme.headline4,
         ),
         const SizedBox(height: Margin.quarck),
-        Text(info.overview != null
+        SelectableText(info.overview != null
             ? info.overview!
             : localize(context).noOverview),
       ],

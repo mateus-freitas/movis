@@ -17,10 +17,8 @@ class MovieInfoController implements IMovieInfoController {
     final moviesResult = await _repository.getMovieInfo(vm.movie.id, lang);
     moviesResult.fold((failure) {
       vm.tmdbFailure = failure;
-      print(failure);
     }, (info) {
       vm.movieInfo = info;
-      print(info);
     });
   }
 }

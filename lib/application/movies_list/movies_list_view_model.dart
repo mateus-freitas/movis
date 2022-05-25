@@ -13,7 +13,6 @@ abstract class IMoviesListViewModel {
 class MoviesListViewModel implements IMoviesListViewModel {
   List<Movie>? _movies;
   TheMovieDBFailure? _movieDBFailure;
-  bool _isLoading = true;
 
   @override
   List<Movie>? get movies => _movies;
