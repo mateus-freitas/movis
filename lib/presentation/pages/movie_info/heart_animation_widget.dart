@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movis/presentation/core/localization/app_localizations.dart';
 
 class AnimatedHeartButton extends StatefulWidget {
   final bool initialIsLiked;
@@ -45,19 +46,25 @@ class _AnimatedHeartButtonState extends State<AnimatedHeartButton>
 
   @override
   Widget build(BuildContext context) {
-    return ScaleTransition(
-      scale: scale,
-      child: IconButton(
-          onPressed: () {
-            setState(() {
-              _isLiked = !_isLiked;
-            });
-            _doAnimation();
-          },
-          icon: Icon(
-            _isLiked ? Icons.favorite : Icons.favorite_border,
-            color: _isLiked ? Colors.red : null,
-          )),
+    return Semantics(
+      label: _isLiked
+          ? localize(context).removeFromFavorites
+          : localize(context).addToFavorites,
+      button: true,
+      child: ScaleTransition(
+        scale: scale,
+        child: IconButton(
+            onPressed: () {
+              setState(() {
+                _isLiked = !_isLiked;
+              });
+              _doAnimation();
+            },
+            icon: Icon(
+              _isLiked ? Icons.favorite : Icons.favorite_border,
+              color: _isLiked ? Colors.red : null,
+            )),
+      ),
     );
   }
 }

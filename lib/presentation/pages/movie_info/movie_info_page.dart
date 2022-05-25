@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movis/application/movie_info/movie_info_controller.dart';
 import 'package:movis/application/movie_info/movie_info_view_model.dart';
+import 'package:movis/domain/movies_list/movie.dart';
 import 'package:movis/presentation/core/components/scaffold/app_scaffold.dart';
 import 'package:movis/presentation/core/components/states/error_state_view.dart';
 import 'package:movis/presentation/core/constants.dart';
@@ -50,22 +51,25 @@ class _MovieInfoPageState extends State<MovieInfoPage> {
         style: Theme.of(context).textTheme.headline2,
       );
 
-  Widget get _releaseYearAndScore => Row(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-                color: AppColors.getColorForMovieScore(_vm.movie.userScore)),
-            padding: const EdgeInsets.symmetric(
-                horizontal: Margin.nano, vertical: 2),
-            child: Text('${(_vm.movie.userScore * 10).floor()}%'),
-          ),
-          const SizedBox(width: Margin.nano),
-          Text(
-            '${_vm.movie.releaseDate.year}',
-            style: const TextStyle(color: AppColors.neutral80),
-          ),
-        ],
-      );
+  Widget get _releaseYearAndScore {
+    final score = _vm.movie.getScoreAsPercentage();
+    return Row(
+      children: [
+        Container(
+          decoration:
+              BoxDecoration(color: AppColors.getColorForMovieScore(score)),
+          padding:
+              const EdgeInsets.symmetric(horizontal: Margin.nano, vertical: 2),
+          child: Text('$score%'),
+        ),
+        const SizedBox(width: Margin.nano),
+        Text(
+          '${_vm.movie.releaseDate.year}',
+          style: const TextStyle(color: AppColors.neutral80),
+        ),
+      ],
+    );
+  }
 
   List<Widget> get _rightColumn => [
         _movieTitle,
@@ -90,25 +94,34 @@ class _MovieInfoPageState extends State<MovieInfoPage> {
       ),
       body: ResponsiveLayout(
         large: SingleChildScrollView(
-          child: Row(children: [
-            Hero(
-                tag: _vm.movie.poster.toString(),
-                child: ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 250),
-                    child: Image.network(_vm.movie.poster.toString()))),
-            Expanded(
-              child: Column(
-                children: _rightColumn,
-              ),
-            )
-          ]),
+          padding: const EdgeInsets.all(Margin.sm),
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Hero(
+                    tag: _vm.movie.poster.toString(),
+                    child: ConstrainedBox(
+                        constraints: const BoxConstraints(maxWidth: 250),
+                        child: Image.network(_vm.movie.poster.toString()))),
+                const SizedBox(width: Margin.xs),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: _rightColumn,
+                  ),
+                )
+              ]),
         ),
         small: ListView(
           padding: const EdgeInsets.all(Margin.xs),
           children: [
             Hero(
                 tag: _vm.movie.poster.toString(),
-                child: Image.network(_vm.movie.poster.toString())),
+                child: Image.network(
+                  _vm.movie.poster.toString(),
+                  fit: BoxFit.cover,
+                )),
             const SizedBox(height: Margin.xxs),
             ..._rightColumn,
           ],

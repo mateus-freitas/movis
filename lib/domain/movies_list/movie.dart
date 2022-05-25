@@ -11,3 +11,7 @@ class Movie with _$Movie {
       required DateTime releaseDate,
       required double userScore}) = _Movie;
 }
+
+extension MovieHelpers on Movie {
+  int getScoreAsPercentage() => (userScore * 10).floor();
+}

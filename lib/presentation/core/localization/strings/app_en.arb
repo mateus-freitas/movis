@@ -4,6 +4,8 @@
     "description": "The title of the application"
   },
   "loadingButtonSemantics": "Button X is loading",
+  "addToFavorites": "Add to favorites",
+  "removeFromFavorites": "Remove from favorites",
 
   "home": "Home",
   "movie": "Movie",

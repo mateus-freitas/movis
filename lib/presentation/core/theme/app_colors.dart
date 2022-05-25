@@ -47,9 +47,9 @@ abstract class AppColors {
 
   static const neutral = Color(0xFF);
 
-  static Color getColorForMovieScore(double score) {
-    if (score > 7.0) return const Color.fromARGB(255, 3, 119, 12);
-    if (score >= 5) return const Color.fromARGB(255, 231, 188, 0);
+  static Color getColorForMovieScore(int score) {
+    if (score > 70) return const Color.fromARGB(255, 3, 119, 12);
+    if (score >= 50) return const Color.fromARGB(255, 212, 176, 0);
     return const Color.fromARGB(255, 126, 0, 0);
   }
 }

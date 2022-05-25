@@ -5,14 +5,14 @@ import 'package:movis/presentation/core/theme/app_colors.dart';
 class MoviePosterView extends StatelessWidget {
   final Uri posterImage;
   final String title;
-  final double movieScore;
+  final int percentageScore;
   final VoidCallback? onTap;
 
   const MoviePosterView(
       {Key? key,
       required this.posterImage,
       required this.title,
-      required this.movieScore,
+      required this.percentageScore,
       this.onTap})
       : super(key: key);
 
@@ -21,7 +21,7 @@ class MoviePosterView extends StatelessWidget {
     final borderRadius = BorderRadius.circular(12);
     return Semantics(
       label:
-          '${localize(context).movie}: $title ${localize(context).movieScore}: $movieScore',
+          '${localize(context).movie}: $title ${localize(context).movieScore}: $percentageScore%',
       container: true,
       excludeSemantics: true,
       child: Container(
@@ -58,10 +58,10 @@ class MoviePosterView extends StatelessWidget {
                   right: 0,
                   top: 0,
                   child: Container(
-                    color: AppColors.getColorForMovieScore(movieScore),
+                    color: AppColors.getColorForMovieScore(percentageScore),
                     padding: const EdgeInsets.fromLTRB(6, 6, 8, 3),
                     child: Text(
-                      movieScore.toStringAsFixed(1),
+                      '$percentageScore%',
                       style: const TextStyle(color: Colors.white),
                     ),
                   ))

@@ -4,6 +4,7 @@ import 'package:movis/application/movie_info/movie_info_view_model.dart';
 import 'package:movis/application/movies_list/movies_list_controller.dart';
 import 'package:movis/application/movies_list/movies_list_view_model.dart';
 import 'package:movis/core/injection.dart';
+import 'package:movis/domain/movies_list/movie.dart';
 import 'package:movis/presentation/core/components/buttons/app_button/app_button.dart';
 import 'package:movis/presentation/core/components/scaffold/app_scaffold.dart';
 import 'package:movis/presentation/core/components/states/error_state_view.dart';
@@ -125,7 +126,7 @@ class _MainContent extends StatelessWidget {
                 return MoviePosterView(
                   posterImage: movie.poster,
                   title: movie.title,
-                  movieScore: movie.userScore,
+                  percentageScore: movie.getScoreAsPercentage(),
                   onTap: () {
                     final infoController = sl<IMovieInfoController>();
                     final infoViewModel =

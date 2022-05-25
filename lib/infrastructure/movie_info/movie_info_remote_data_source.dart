@@ -29,6 +29,7 @@ class MovieInfoRemoteDataSourceImpl implements IMovieInfoRemoteDataSource {
             statusCode: -1,
             message: 'The response data is in the wrong format.');
       }
+      print(data);
       return MovieInfoDto.fromJson(data);
     } on TheMovieDBException catch (_) {
       rethrow;

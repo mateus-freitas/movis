@@ -4,6 +4,8 @@
     "description": "The title of the application"
   },
   "loadingButtonSemantics": "Botão X está carregando",
+  "addToFavorites": "Adicionar aos favoritos",
+  "removeFromFavorites": "Remover dos favoritos",
 
   "home": "Início",
   "movie": "Filme",
