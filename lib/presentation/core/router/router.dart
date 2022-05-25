@@ -12,10 +12,12 @@ Route<dynamic> generateRoute(RouteSettings settings) {
 
   switch (route) {
     case AppRoute.home:
+      final controller = sl<IMoviesListController>();
+      final vm = sl<IMoviesListViewModel>();
       return getPlatformPageRoute<void>(
           builder: (context) => MoviesListPage(
-                controller: sl<IMoviesListController>(),
-                viewModel: sl<IMoviesListViewModel>(),
+                controller: controller,
+                viewModel: vm,
               ));
     case AppRoute.favorites:
       return getPlatformPageRoute<void>(

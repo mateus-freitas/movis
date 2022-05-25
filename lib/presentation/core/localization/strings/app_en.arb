@@ -13,10 +13,18 @@
   "favorites": "Favorites",
   "favoriteMovies": "Favorite Movies",
 
+  "overview": "Overview",
+  "noOverview": "This movie does not have an overview.",
+  "originalLanguage": "Original Language",
+  "status": "Status",
+  "budget": "Budget",
+  "revenue": "Revenue",
+
   "generalErrorMessage": "There was an error. Please, check your connection and try again.",
   "tmdbOffline": "Our servers aren't responding. Please, try again later.",
 
   "next": "Next",
+  "tryAgain": "Try Again",
   "skip": "Skip",
   "finish": "Finish",
   "restart": "Restart"

@@ -34,7 +34,9 @@ class MoviePosterView extends StatelessWidget {
           onTap: onTap,
           child: Stack(
             children: [
-              Image.network(posterImage.toString()),
+              Hero(
+                  tag: posterImage.toString(),
+                  child: Image.network(posterImage.toString())),
               Container(
                 decoration: const BoxDecoration(
                     gradient: LinearGradient(

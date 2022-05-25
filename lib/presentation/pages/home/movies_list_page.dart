@@ -6,6 +6,7 @@ import 'package:movis/application/movies_list/movies_list_view_model.dart';
 import 'package:movis/core/injection.dart';
 import 'package:movis/presentation/core/components/buttons/app_button/app_button.dart';
 import 'package:movis/presentation/core/components/scaffold/app_scaffold.dart';
+import 'package:movis/presentation/core/components/states/error_state_view.dart';
 import 'package:movis/presentation/core/constants.dart';
 import 'package:movis/presentation/core/localization/app_localizations.dart';
 import 'package:movis/presentation/core/responsive/responsive_layout.dart';
@@ -51,15 +52,26 @@ class _MoviesListPageState extends State<MoviesListPage> {
         title: localize(context).favorites,
         onPressed: () {},
       ),
-      body: SafeArea(child: _MainContent(vm: _vm)),
+      body: SafeArea(
+          child: _MainContent(
+        vm: _vm,
+        onReload: () {
+          setState(() {
+            _vm.moviesFailure = null;
+            _loadData();
+          });
+        },
+      )),
     );
   }
 }
 
 class _MainContent extends StatelessWidget {
   final IMoviesListViewModel vm;
+  final void Function() onReload;
 
-  const _MainContent({Key? key, required this.vm}) : super(key: key);
+  const _MainContent({Key? key, required this.vm, required this.onReload})
+      : super(key: key);
 
   int _getGridCrossAxisCount(BuildContext context) {
     if (ResponsiveLayout.isSmallScreen(context)) return 2;
@@ -70,18 +82,16 @@ class _MainContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (vm.moviesFailure != null) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(vm.moviesFailure!.when<String>(
-            generalError: (statusCode, message) =>
-                localize(context).generalErrorMessage,
-            serviceOffline: (statusCode, message) =>
-                localize(context).tmdbOffline,
-            invalidId: (statusCode, message) =>
-                localize(context).generalErrorMessage,
-          )),
-        ],
+      return ErrorStateView(
+        errorMessage: vm.moviesFailure!.when<String>(
+          generalError: (statusCode, message) =>
+              localize(context).generalErrorMessage,
+          serviceOffline: (statusCode, message) =>
+              localize(context).tmdbOffline,
+          invalidId: (statusCode, message) =>
+              localize(context).generalErrorMessage,
+        ),
+        onTryAgain: onReload,
       );
     }
     if (vm.movies == null) {
@@ -117,11 +127,14 @@ class _MainContent extends StatelessWidget {
                   title: movie.title,
                   movieScore: movie.userScore,
                   onTap: () {
+                    final infoController = sl<IMovieInfoController>();
+                    final infoViewModel =
+                        sl<IMovieInfoViewModel>(param1: movie);
                     Navigator.of(context).push(getPlatformPageRoute(
                         fullscreenDialog: true,
                         builder: (context) => MovieInfoPage(
-                              controller: sl<IMovieInfoController>(),
-                              viewModel: sl<IMovieInfoViewModel>(param1: movie),
+                              controller: infoController,
+                              viewModel: infoViewModel,
                             )));
                   },
                 );

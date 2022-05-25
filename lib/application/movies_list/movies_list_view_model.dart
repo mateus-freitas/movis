@@ -9,7 +9,7 @@ abstract class IMoviesListViewModel {
   set moviesFailure(TheMovieDBFailure? newValue);
 }
 
-@Singleton(as: IMoviesListViewModel)
+@Injectable(as: IMoviesListViewModel)
 class MoviesListViewModel implements IMoviesListViewModel {
   List<Movie>? _movies;
   TheMovieDBFailure? _movieDBFailure;

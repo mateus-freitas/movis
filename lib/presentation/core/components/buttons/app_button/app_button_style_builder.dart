@@ -12,7 +12,7 @@ class AppButtonStyleBuilder {
 
   MaterialStateProperty<EdgeInsetsGeometry> get _padding =>
       MaterialStateProperty.all<EdgeInsetsGeometry>(
-          const EdgeInsets.symmetric(horizontal: 24, vertical: 16));
+          const EdgeInsets.symmetric(horizontal: 16, vertical: 12));
 
   Color get _disabledForegroundColor =>
       forDark ? AppColors.neutral40 : AppColors.neutral70;

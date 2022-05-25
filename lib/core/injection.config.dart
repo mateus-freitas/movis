@@ -41,10 +41,10 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
           get<_i3.IDioClient>(instanceName: 'TMDBClient')));
   gh.factory<_i11.IMoviesListRepository>(() =>
       _i12.MoviesListRepositoryImpl(get<_i10.IMoviesListRemoteDataSource>()));
-  gh.singleton<_i13.IMoviesListViewModel>(_i13.MoviesListViewModel());
+  gh.factory<_i13.IMoviesListViewModel>(() => _i13.MoviesListViewModel());
   gh.factory<_i14.IMovieInfoController>(
       () => _i14.MovieInfoController(get<_i6.IMovieInfoRepository>()));
-  gh.singleton<_i15.IMoviesListController>(
-      _i15.MoviesListController(get<_i11.IMoviesListRepository>()));
+  gh.factory<_i15.IMoviesListController>(
+      () => _i15.MoviesListController(get<_i11.IMoviesListRepository>()));
   return get;
 }
